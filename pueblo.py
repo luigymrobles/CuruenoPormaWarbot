@@ -1,1 +1,1 @@
-#imorts y esoclass Pueblo:        def __init__:        return
+#imorts y esoclass Pueblo:        def __init__(self,nombre,coords):        self.nombre = nombre        self.coords = coords        self.estado= True        return

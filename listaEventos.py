@@ -1,1 +1,1 @@
-#importimport eventoclass listaEventos:    def __init__(self):        return
+#importimport eventclass listaEventos:    def __init__(self):        return
