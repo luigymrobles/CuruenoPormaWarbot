@@ -1,1 +1,1 @@
-#import import tweepyclass twitter_handler:        
+#import import tweepyclass twitter_handler:        def __init__(self,):    	consumer_key_path = "./.apikeys/consumer_key"		consumer_secret_path = "./.apikeys/consumer_secret"		access_token_path = "./.apikeys/access_token"		access_token_secret_path = "./.apikeys/access_token_secret"    	return
