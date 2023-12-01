@@ -1,0 +1,1 @@
+#import etcclass Persona:        def __init__(self,nombre, UID, foto):                self.nombre = nombre        self.UID = UID        self.fot = foto        self.stats = []        self.estado = True                return    
