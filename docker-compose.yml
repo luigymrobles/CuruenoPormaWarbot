@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  curueno-porma-warbot:
+    container_name: ${DOCKER_CONTAINER_NAME}
+    hostname: ${DOCKER_CONTAINER_NAME}
+    restart: always
+    image: ${REGISTRY}:${REGISTRY_PORT}/${DOCKER_CONTAINER_NAME}_image
+    env_file:
+      - .env
+    volumes:
+      - ./:/src/
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: 50m
+        max-file: '2'
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: your_database
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD: your_password
+    ports:
+      - "3306:3306"
