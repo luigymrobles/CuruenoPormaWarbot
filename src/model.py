@@ -7,11 +7,6 @@ class Event:
 
 
 @dataclass
-class EventList:
-    pass
-
-
-@dataclass
 class Town:
     name: str
     coords: tuple[int, int]
