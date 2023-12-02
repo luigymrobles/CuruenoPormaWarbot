@@ -2,7 +2,10 @@
 name = "curueno-porma-warbot"
 version = "0.1.0"
 description = ""
-authors = ["Luis Martín Robles <75728245+luigymrobles@users.noreply.github.com>"]
+authors = [
+    "Luis Martín Robles <75728245+luigymrobles@users.noreply.github.com>",
+    "Jorge Gómez Zarzosa <jorge.gomzar@gmail.com>"
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
