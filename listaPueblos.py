@@ -1,1 +1,0 @@
-#importfrom pueblo import *class Pueblo:    def __init__(self,path_to_db):        self.pueblos = []                return    def addPueblo(self,pueblo):        #pues lo que dice no tiene mucho misterio        self.pueblos.add(pueblo)        return
