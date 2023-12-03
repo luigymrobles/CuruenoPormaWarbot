@@ -13,6 +13,7 @@ def setup_logging(level: int = logging.DEBUG):
     Adds the following handlers:
     - Console handler
     """
+    # We can append new handlers in the future, for Telegram, Discord for ex.
     handlers = []
 
     log_formatter = ColoredFormatter(
@@ -20,14 +21,14 @@ def setup_logging(level: int = logging.DEBUG):
         datefmt="%Y-%m-%d %H:%M:%S",
         reset=True,
         log_colors={
-            'DEBUG': 'cyan',
-            'INFO': 'green',
-            'WARNING': 'yellow',
-            'ERROR': 'red',
-            'CRITICAL': 'red,bg_white',
+            "DEBUG": "cyan",
+            "INFO": "green",
+            "WARNING": "yellow",
+            "ERROR": "red",
+            "CRITICAL": "red,bg_white",
         },
         secondary_log_colors={},
-        style='%'
+        style="%"
     )
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(log_formatter)

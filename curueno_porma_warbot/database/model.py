@@ -1,8 +1,7 @@
-from typing import TypeVar
-
+from geoalchemy2 import Geometry
 from sqlalchemy import ForeignKey, Column, String, Integer, Boolean
 from sqlalchemy.orm import declarative_base
-from geoalchemy2 import Geometry
+from typing import TypeVar
 
 
 T = TypeVar("T")

@@ -2,6 +2,7 @@ from pydantic_settings import BaseSettings
 
 
 class TwitterAPIClientConfig(BaseSettings):
+    """Secrets for the Twitter API"""
     consumer_key: str
     consumer_secret: str
     access_token: str
@@ -9,6 +10,7 @@ class TwitterAPIClientConfig(BaseSettings):
 
 
 class MySQLConfig(BaseSettings):
+    """Secrets for the DB connection"""
     mysql_database: str
     mysql_driver: str = "pymysql"
     mysql_root_password: str
