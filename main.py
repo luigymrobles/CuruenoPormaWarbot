@@ -1,7 +1,7 @@
 import logging
 
-from src.utils.log import setup_logging
-from src.warbot import CuruenoPormaWarbot
+from curueno_porma_warbot.utils.log import setup_logging
+from curueno_porma_warbot.warbot import CuruenoPormaWarbot
 
 
 if __name__ == "__main__":
