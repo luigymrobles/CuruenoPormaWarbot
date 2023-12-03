@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic_settings import BaseSettings
 
 
@@ -14,8 +12,9 @@ class MySQLConfig(BaseSettings):
     mysql_database: str
     mysql_driver: str = "pymysql"
     mysql_root_password: str
-    mysql_user: Optional[str] = None
-    mysql_password: Optional[str] = None
+    mysql_user: str | None = None
+    mysql_password: str | None = None
+    mysql_verbose: bool = False
 
     def get_engine_uri(self):
         user = self.mysql_user or "root"

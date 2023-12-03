@@ -5,7 +5,7 @@ WORKDIR /src
 
 RUN pip install poetry==1.6.1
 
-COPY curueno_porma_warbot /src/src
+COPY curueno_porma_warbot /src/curueno_porma_warbot
 COPY poetry.lock /src/poetry.lock
 COPY pyproject.toml /src/pyproject.toml
 COPY README.md /src/README.md

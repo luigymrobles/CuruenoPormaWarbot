@@ -5,3 +5,7 @@ class PersonNotFound(Exception):
     def __init__(self, message):
         message = "Person:%s not found" % message
         super().__init__(message)
+
+
+class NoDBSession(Exception):
+    pass
