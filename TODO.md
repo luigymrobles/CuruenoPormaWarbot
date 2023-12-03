@@ -1,7 +1,6 @@
 # TODO
 
-- Tests
-- Configure autohooks to run formatters and linters on commit
-- Update README.md
-- Add GitHub workflows to test and deploy
-- Create PR to original REPO
+- [ ] CSV / Excel parsers
+- [ ] Tests
+- [ ] Configure autohooks to run formatters and linters on commit
+- [ ] Add GitHub workflows to test and deploy
