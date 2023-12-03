@@ -21,11 +21,21 @@ services:
         max-file: '2'
 
   mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: your_database
-      MYSQL_USER: your_user
-      MYSQL_PASSWORD: your_password
+    image: mysql:8-oracle
+    platform: linux/amd64
+    container_name: mysql
+    restart: always
+    env_file:
+      - .env
     ports:
       - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "${ADMINER_PORT}:8080"

@@ -1,14 +1,14 @@
 FROM python:3.11
 
-RUN mkdir -p /root
-WORKDIR /root
+RUN mkdir -p /src
+WORKDIR /src
 
 RUN pip install poetry==1.6.1
 
-COPY src /root/src
-COPY poetry.lock /root/poetry.lock
-COPY pyproject.toml /root/pyproject.toml
-COPY README.md /root/README.md
+COPY curueno_porma_warbot /src/src
+COPY poetry.lock /src/poetry.lock
+COPY pyproject.toml /src/pyproject.toml
+COPY README.md /src/README.md
 
 RUN poetry config virtualenvs.create false
 RUN poetry install
