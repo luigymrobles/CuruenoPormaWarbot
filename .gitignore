@@ -3,3 +3,9 @@ playerdata
 *jpg
 *JPG
 db/
+
+venv
+.mypy_cache
+.idea
+.env
+data

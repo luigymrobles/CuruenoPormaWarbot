@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "curueno-porma-warbot"
+version = "0.1.0"
+description = ""
+authors = [
+    "Luis Martín Robles <75728245+luigymrobles@users.noreply.github.com>",
+    "Jorge Gómez Zarzosa <jorge.gomzar@gmail.com>",
+]
+readme = "README.md"
+include = [
+    "curueno_porma_warbot"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+colorlog = "^6.7.0"
+tweepy = "^4.14.0"
+pydantic = "^2.5.2"
+pydantic-settings = "^2.1.0"
+sqlalchemy = "^2.0.23"
+geoalchemy2 = "^0.14.2"
+pymysql = "^1.1.0"
+
+[tool.poetry.group.dev.dependencies]
+autohooks-plugin-ruff = "^23.11.0"
+autohooks-plugin-black = "^23.10.0"
+autohooks-plugin-mypy = "^23.10.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.3"
+pytest-mock = "^3.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
