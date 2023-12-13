@@ -8,12 +8,13 @@ condado, acompañadme en esta terrible epopeya de la mala programación.
 
 ### Using docker dev env (Recommended)
 2. Run `make dev`
-3. Profit!
+3. Once inside the docker container run the script run_api.sh
+4. Profit!
 
 When it finishes you will have deployed:
 - [Adminer](https://www.adminer.org/) on port `ADMINER_PORT`
 - [MySQL](https://www.mysql.com/) on port 3306
-- The CuruenoPormaWarbot.
+- CuruenoPormaWarbotAPI on port `WARBOT_API_PORT`.
  
 ### Locally
 You need to have a MySQL instance running, make sure you update the `.env`
@@ -21,7 +22,7 @@ variables accordingly!
 
 2. Install poetry if you haven't already.
 3. Run `poetry install`
-4. Run `python main.py`
+4. Run the script `run_api.sh`
 5. Profit!
 
 ## To Dos

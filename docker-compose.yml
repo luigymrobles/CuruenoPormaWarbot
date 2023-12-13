@@ -14,6 +14,8 @@ services:
       - mysql
     depends_on:
       - mysql
+    ports:
+      - "${WARBOT_API_PORT}:8000"
     logging:
       driver: 'json-file'
       options:
