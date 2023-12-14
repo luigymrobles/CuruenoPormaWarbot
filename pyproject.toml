@@ -20,6 +20,10 @@ pydantic-settings = "^2.1.0"
 sqlalchemy = "^2.0.23"
 geoalchemy2 = "^0.14.2"
 pymysql = "^1.1.0"
+fastapi = "^0.105.0"
+uvicorn = "^0.24.0.post1"
+aiohttp = "^3.9.1"
+sqlalchemy-utils = "^0.41.1"
 
 [tool.poetry.group.dev.dependencies]
 autohooks-plugin-ruff = "^23.11.0"
@@ -34,3 +38,10 @@ pytest-mock = "^3.12.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+exclude = [
+    "venv",
+    ".ruff_cache",
+]
+line-length = 120

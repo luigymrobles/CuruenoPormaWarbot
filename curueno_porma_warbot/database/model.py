@@ -1,4 +1,4 @@
-from geoalchemy2 import Geometry
+# from geoalchemy2 import Geometry
 from sqlalchemy import ForeignKey, Column, String, Integer, Boolean
 from sqlalchemy.orm import declarative_base
 from typing import TypeVar
@@ -26,27 +26,28 @@ Base.__repr__ = common_repr
 
 
 class Town(Base):
-    __tablename__ = "town"
+    __tablename__ = "Town"
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
-    coordinates = Column(Geometry('POINT'))
+    # This is disabled until we fix the column cannot be null issue
+    # coordinates = Column(Geometry('POINT'), nullable=True)
     alive = Column(Boolean, default=True)
 
-    def __init__(self, name: str, coords: tuple[float, float], alive: bool = True):
+    def __init__(self, name: str, coordinates: tuple[float, float] = None, alive: bool = True):
         self.name = name
-        self.coordinates = coords
+        # self.coordinates = coordinates
         self.alive = alive
 
 
 class Person(Base):
-    __tablename__ = "person"
+    __tablename__ = "Person"
     id = Column(Integer, primary_key=True)
     name = Column(String(120))
-    town = Column(Integer, ForeignKey("town.id"))
-    picture = Column(String(1024))
+    town = Column(Integer, ForeignKey("Town.id"))
+    picture = Column(String(1024), nullable=True)
     alive = Column(Boolean, default=True)
 
-    def __init__(self, name: str, town: int | Town, picture: str, alive: bool = True):
+    def __init__(self, name: str, town: int | Town, picture: str = None, alive: bool = True):
         if isinstance(town, Town):
             town = town.tid
 
@@ -57,10 +58,10 @@ class Person(Base):
 
 
 class Event(Base):
-    __tablename__ = "event"
+    __tablename__ = "Event"
     id = Column(Integer, primary_key=True)
     event_type = Column(String(50))
-    owner = Column(Integer, ForeignKey("person.id"))
+    owner = Column(Integer, ForeignKey("Person.id"))
 
     def __init__(self, event_type: str, owner: int | Person):
         if isinstance(owner, Person):
@@ -71,11 +72,11 @@ class Event(Base):
 
 
 class Stat(Base):
-    __tablename__ = "stat"
+    __tablename__ = "Stat"
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
     value = Column(String(50))
-    owner = Column(Integer, ForeignKey("person.id"))
+    owner = Column(Integer, ForeignKey("Person.id"))
 
     def __init__(self, name: str, value: str, owner: int | Person):
         if isinstance(owner, Person):
