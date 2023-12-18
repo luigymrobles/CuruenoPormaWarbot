@@ -34,6 +34,7 @@ autohooks-plugin-mypy = "^23.10.0"
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.3"
 pytest-mock = "^3.12.0"
+ipdb = "^0.13.13"
 
 [build-system]
 requires = ["poetry-core"]

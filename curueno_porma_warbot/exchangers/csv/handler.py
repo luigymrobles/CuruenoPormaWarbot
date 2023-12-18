@@ -5,7 +5,7 @@ from typing import Generator
 
 from curueno_porma_warbot.exchangers.common import ExchangerHandler
 
-# name,picture,alive,town_name,town_coords,town_alive,stat_1_name,stat_1_value,[...],event_1_type,event_1_co_owner,[...]
+# name,picture,alive,town_name,town_coords,town_alive,stat_1_name,stat_1_value,[...]
 
 @dataclass
 class CSVTown:
