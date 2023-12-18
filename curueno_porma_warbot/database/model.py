@@ -33,7 +33,13 @@ class Town(Base):
     # coordinates = Column(Geometry('POINT'), nullable=True)
     alive = Column(Boolean, default=True)
 
-    def __init__(self, name: str, coordinates: tuple[float, float] = None, alive: bool = True):
+    def __init__(
+        self,
+        name: str,
+        alive: bool = True,
+        *args,
+        **kwargs
+    ):
         self.name = name
         # self.coordinates = coordinates
         self.alive = alive
@@ -47,7 +53,15 @@ class Person(Base):
     picture = Column(String(1024), nullable=True)
     alive = Column(Boolean, default=True)
 
-    def __init__(self, name: str, town: int | Town, picture: str = None, alive: bool = True):
+    def __init__(
+        self,
+        name: str,
+        town: int | Town,
+        picture: str = None,
+        alive: bool = True,
+        *args,
+        **kwargs,
+    ):
         if isinstance(town, Town):
             town = town.tid
 
@@ -61,14 +75,26 @@ class Event(Base):
     __tablename__ = "Event"
     id = Column(Integer, primary_key=True)
     event_type = Column(String(50))
-    owner = Column(Integer, ForeignKey("Person.id"))
+    owner_1 = Column(Integer, ForeignKey("Person.id"))
+    owner_2 = Column(Integer, ForeignKey("Person.id"))
 
-    def __init__(self, event_type: str, owner: int | Person):
-        if isinstance(owner, Person):
-            owner = owner.pid
+    def __init__(
+        self,
+        event_type: str,
+        owner_1: int | Person,
+        owner_2: int | Person,
+        *args,
+        **kwargs,
+    ):
+        if isinstance(owner_1, Person):
+            owner_1 = owner_1.pid
+
+        if isinstance(owner_2, Person):
+            owner_2 = owner_2.pid
 
         self.event_type = event_type
-        self.owner = owner
+        self.owner_1 = owner_1
+        self.owner_2 = owner_2
 
 
 class Stat(Base):
@@ -78,7 +104,14 @@ class Stat(Base):
     value = Column(String(50))
     owner = Column(Integer, ForeignKey("Person.id"))
 
-    def __init__(self, name: str, value: str, owner: int | Person):
+    def __init__(
+        self,
+        name: str,
+        value: str,
+        owner: int | Person,
+        *args,
+        **kwargs,
+    ):
         if isinstance(owner, Person):
             owner = owner.pid
 
