@@ -67,7 +67,7 @@ class DBManager(ClassWithLogger):
             key
             for key, value
             in filter_dict.items()
-            if value is None
+            if value is None or value == ""
         ]
         for key in keys_to_delete:
             del filter_dict[key]
@@ -88,9 +88,17 @@ class DBManager(ClassWithLogger):
         self.session.add(obj)
         return obj
 
-    def query_object(self, obj: WarbotDBModel, filter_dict: dict) -> list[WarbotDBModel]:
+    def __query_object(self, obj: WarbotDBModel, filter_dict: dict) -> list[WarbotDBModel]:
         filter_dict = self._clean_none(filter_dict)
         return self.session.query(obj).filter_by(**filter_dict)
+
+    def __get_or_create(self, obj: WarbotDBModel, filter_dict: dict) -> WarbotDBModel:
+        db_obj = self.__query_object(obj, filter_dict)
+        if db_obj:
+            return db_obj
+        self.__create_and_add(db_model=obj, data=filter_dict)
+        self.session.commit()
+        return self.__query_object(obj, filter_dict)
 
     def query_town(
         self,
@@ -103,7 +111,17 @@ class DBManager(ClassWithLogger):
             "name": name,
             "alive": alive,
         }
-        return self.query_object(Town, filter_dict)
+        return self.__query_object(Town, filter_dict)
+
+    def create_town(self, town_data: dict) -> Town:
+        """Creates the Town object and adds it to the session
+
+        :returns: The new Town object.
+        """
+        return self.__create_and_add(Town, town_data)
+
+    def get_or_create_town(self, town_data: dict) -> Town:
+        return self.__get_or_create(Town, town_data)
 
     def query_person(
         self,
@@ -118,7 +136,17 @@ class DBManager(ClassWithLogger):
             "town": town,
             "alive": alive,
         }
-        return self.query_object(Person, filter_dict)
+        return self.__query_object(Person, filter_dict)
+
+    def create_person(self, person_data: dict) -> Person:
+        """Creates the Person object and adds it to the session
+
+        :returns: The new Person object.
+        """
+        return self.__create_and_add(Person, person_data)
+
+    def get_or_create_person(self, person_data: dict) -> Person:
+        return self.__get_or_create(Person, person_data)
 
     def query_event(
             self,
@@ -131,7 +159,17 @@ class DBManager(ClassWithLogger):
             "event_type": event_type,
             "owner": owner,
         }
-        return self.query_object(Event, filter_dict)
+        return self.__query_object(Event, filter_dict)
+
+    def create_event(self, event_data: dict) -> Event:
+        """Creates the Stat object and adds it to the session
+
+        :returns: The new Stat object.
+        """
+        return self.__create_and_add(Event, event_data)
+
+    def get_or_create_event(self, event_data: dict) -> Event:
+        return self.__get_or_create(Event, event_data)
 
     def query_stat(
             self,
@@ -146,28 +184,7 @@ class DBManager(ClassWithLogger):
             "value": value,
             "owner": owner,
         }
-        return self.query_object(Stat, filter_dict)
-
-    def create_town(self, town_data: dict) -> Town:
-        """Creates the Town object and adds it to the session
-
-        :returns: The new Town object.
-        """
-        return self.__create_and_add(Town, town_data)
-
-    def create_person(self, person_data: dict) -> Person:
-        """Creates the Person object and adds it to the session
-
-        :returns: The new Person object.
-        """
-        return self.__create_and_add(Person, person_data)
-
-    def create_event(self, event_data: dict) -> Event:
-        """Creates the Stat object and adds it to the session
-
-        :returns: The new Stat object.
-        """
-        return self.__create_and_add(Event, event_data)
+        return self.__query_object(Stat, filter_dict)
 
     def create_stat(self, stat_data: dict) -> Stat:
         """Creates the Stat object and adds it to the session
@@ -175,3 +192,6 @@ class DBManager(ClassWithLogger):
         :returns: The new Stat object.
         """
         return self.__create_and_add(Stat, stat_data)
+
+    def get_or_create_stat(self, stat_data: dict) -> Stat:
+        return self.__get_or_create(Stat, stat_data)
