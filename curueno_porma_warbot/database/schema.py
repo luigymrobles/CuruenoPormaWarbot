@@ -24,7 +24,8 @@ class Person(BaseModelORM):
 class Event(BaseModelORM):
     id: int
     event_type: str
-    owner: int
+    owner_1: int
+    owner_2: int
 
 
 class Stat(BaseModelORM):
